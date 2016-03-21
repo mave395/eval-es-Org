@@ -1,0 +1,52 @@
+<apex:page standardController="Allowance__c" extensions="AllowanceController">
+    
+    <center><b>Allowance Calculator</b></center><br/>
+    <apex:form >
+    <apex:pageBlock title="Enter Details">
+    <apex:pageBlockSection columns="2">     
+        <apex:inputField value="{!Allowance__c.Country_Allowance_Rate__c}" />
+        <apex:inputField value="{!Allowance__c.Employee__c}"/>
+        <apex:inputField value="{!Allowance__c.Number_of_Breakfasts__c}"/>
+        <apex:inputField value="{!Allowance__c.Number_of_Lunches_Dinners__c}"/>
+        <apex:inputField value="{!Allowance__c.Kilometers_Travelled__c}"/>
+        <apex:commandButton value="Calculate and Save Allowance" action="{!save}" reRender="AllowanceDetails" immediate="false"/>
+    </apex:pageBlockSection>
+    </apex:pageBlock>  
+    </apex:form>
+     
+     <apex:outputPanel id="AllowanceDetails">
+     <apex:pageBlock title="Details of Allowances" rendered="{!allowanceDetailsRender}">
+     <table border="1" style="width:100%">
+      <tr>
+        <th>Allowance Type</th>
+        <th>Total Number</th>       
+        <th>Total Cost</th>
+        <th>Calculated Allowance</th>
+      </tr>
+      <tr>
+        <td>Breakfast</td>
+        <td>{!Allowance__c.Number_of_Breakfasts__c}</td>        
+        <td>{!Allowance__c.Country_Allowance_Rate__r.Allowance_Rate__c}</td>
+        <td>{!Allowance__c.Breakfast_Allowance__c}</td>
+      </tr>
+      <tr>
+        <td>Lunch/Dinner</td>
+        <td>{!Allowance__c.Number_of_Lunches_Dinners__c}</td>       
+        <td>{!Allowance__c.Country_Allowance_Rate__r.Allowance_Rate__c}</td>
+        <td>{!Allowance__c.Lunch_Dinner_Allowance__c}</td>  
+      </tr>
+      <tr>
+        <td>Kilometers</td>
+        <td>{!Allowance__c.Kilometers_Travelled__c}</td>       
+        <td>{!Allowance__c.Country_Allowance_Rate__r.Allowance_Rate__c}</td>
+        <td>{!Allowance__c.Fuel_Allowance__c}</td>  
+      </tr>
+    </table>
+    </apex:pageBlock>   
+    </apex:outputPanel>
+   
+</apex:page>
+
+<!--
+    
+-->
